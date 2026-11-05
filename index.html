@@ -1,21 +1,32 @@
-const DEFAULT_DATA = {
-            pin: '1234',
-            name: 'JIMMY CARLOS',
-            title: 'DJ , EDITOR DE VIDEO E DOCUMENTARISTA',
-            bio: 'Diretor de Fotografia & Roteirista | DJ & Produtor Musical\nEstudante de Jornalismo Fundador da @lightmotion99\n(Vídeos, Eventos & Drone ✈) Criador do @jimmybfr',
-            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
-            phone: '+5521999999999',
-            whatsapp: '5521999999999',
-            email: 'seuemail@exemplo.com',
-            website: 'https://seuwebsite.com',
-            brandColor: '#2563eb',
-            socials: [
-                { platform: 'instagram', label: 'Instagram', url: 'https://instagram.com/jimmybfr', icon: 'fa-brands fa-instagram' },
-                { platform: 'instagram', label: '@lightmotion99', url: 'https://instagram.com/lightmotion99', icon: 'fa-brands fa-instagram' },
-                { platform: 'tiktok', label: 'TikTok', url: 'https://tiktok.com/@seutiktok', icon: 'fa-brands fa-tiktok' },
-                { platform: 'youtube', label: 'YouTube', url: 'https://youtube.com/@seuchannel', icon: 'fa-brands fa-youtube' }
-            ]
-        };
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JIMMY CARLOS | Cartão de Visita Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: 'var(--brand-color, #2563eb)',
+                        'brand-hover': 'var(--brand-hover-color, #1d4ed8)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
             }
         }
     </script>
@@ -199,4 +210,119 @@ const DEFAULT_DATA = {
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-300 mb-1">Foto de Perfil (URL)</label>
-                        <input type="text" id="editAvatarUrl" class="w-full glass-input rounded-xl px
+                        <input type="text" id="editAvatarUrl" class="w-full glass-input rounded-xl px-3 py-2 text-sm">
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl space-y-4">
+                    <h3 class="text-sm font-semibold text-blue-400 uppercase tracking-wider">Contatos Diretos</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Telefone</label>
+                            <input type="text" id="editPhone" class="w-full glass-input rounded-xl px-3 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">WhatsApp</label>
+                            <input type="text" id="editWhatsapp" class="w-full glass-input rounded-xl px-3 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">E-mail</label>
+                            <input type="email" id="editEmail" class="w-full glass-input rounded-xl px-3 py-2 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Website</label>
+                            <input type="url" id="editWebsite" class="w-full glass-input rounded-xl px-3 py-2 text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-2xl space-y-4">
+                    <h3 class="text-sm font-semibold text-blue-400 uppercase tracking-wider">Alterar PIN</h3>
+                    <input type="password" id="editPin" placeholder="Nova Senha PIN" class="w-full glass-input rounded-xl px-3 py-2 text-sm">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        const DEFAULT_DATA = {
+            pin: '1234',
+            name: 'JIMMY CARLOS',
+            title: 'DJ , EDITOR DE VIDEO E DOCUMENTARISTA',
+            bio: 'Diretor de Fotografia & Roteirista | DJ & Produtor Musical\nEstudante de Jornalismo | Fundador da @lightmotion99\n(Vídeos, Eventos & Drone ✈) | Criador do @jimmybfr',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
+            phone: '',
+            whatsapp: '',
+            email: '',
+            website: '',
+            brandColor: '#2563eb',
+            socials: [
+                { platform: 'instagram', label: 'Instagram', url: 'https://instagram.com/jimmybfr', icon: 'fa-brands fa-instagram' },
+                { platform: 'instagram', label: '@lightmotion99', url: 'https://instagram.com/lightmotion99', icon: 'fa-brands fa-instagram' },
+                { platform: 'tiktok', label: 'TikTok', url: 'https://tiktok.com', icon: 'fa-brands fa-tiktok' },
+                { platform: 'youtube', label: 'YouTube', url: 'https://youtube.com', icon: 'fa-brands fa-youtube' }
+            ]
+        };
+
+        let appData = { ...DEFAULT_DATA };
+
+        function initApp() {
+            loadStoredData();
+            renderCardView();
+            setupEventListeners();
+        }
+
+        function loadStoredData() {
+            const stored = localStorage.getItem('nfc_card_data');
+            if (stored) {
+                try {
+                    appData = { ...DEFAULT_DATA, ...JSON.parse(stored) };
+                } catch (e) {}
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('nfc_card_data', JSON.stringify(appData));
+            renderCardView();
+        }
+
+        function renderCardView() {
+            document.getElementById('displayName').textContent = appData.name;
+            document.getElementById('displayTitle').textContent = appData.title;
+            document.getElementById('displayBio').textContent = appData.bio;
+            document.getElementById('displayAvatar').src = appData.avatar;
+
+            document.getElementById('btnCall').href = appData.phone ? `tel:${appData.phone}` : '#';
+            document.getElementById('btnWhatsapp').href = appData.whatsapp ? `https://wa.me/${appData.whatsapp.replace(/\D/g,'')}` : '#';
+            document.getElementById('btnEmail').href = appData.email ? `mailto:${appData.email}` : '#';
+            document.getElementById('btnWebsite').href = appData.website || '#';
+
+            const socialContainer = document.getElementById('socialLinksContainer');
+            socialContainer.innerHTML = '';
+
+            appData.socials.forEach(social => {
+                if (!social.url) return;
+                const linkEl = document.createElement('a');
+                linkEl.href = social.url;
+                linkEl.target = '_blank';
+                linkEl.className = 'flex items-center justify-between bg-slate-900/70 hover:bg-slate-800 border border-white/5 px-4 py-3 rounded-xl transition-all group';
+                linkEl.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-blue-400 group-hover:text-white">
+                            <i class="${social.icon || 'fa-solid fa-link'}"></i>
+                        </div>
+                        <span class="text-sm font-medium text-slate-200 group-hover:text-white">${social.label}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+                `;
+                socialContainer.appendChild(linkEl);
+            });
+        }
+
+        function setupEventListeners() {
+            const authModal = document.getElementById('authModal');
+            const adminDrawer = document.getElementById('adminDrawer');
+            const pinInput = document.getElementById('pinInput');
+
+            document.
