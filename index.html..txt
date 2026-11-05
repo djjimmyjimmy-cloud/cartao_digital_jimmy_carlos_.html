@@ -121,7 +121,7 @@
 
                 <!-- Profile Avatar -->
                 <div class="relative -mt-16 mb-4 inline-block">
-                    <img id="displayAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="JIMMY CARLOS" class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-900 shadow-2xl mx-auto bg-slate-800">
+                    <img id="displayAvatar" src="" alt="JIMMY CARLOS" class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-slate-900 shadow-2xl mx-auto bg-slate-800">
                     <div id="onlineBadge" class="absolute bottom-2 right-2 w-4 h-4 bg-emerald-500 border-2 border-slate-900 rounded-full"></div>
                 </div>
 
@@ -170,7 +170,7 @@
             <!-- Footer NFC info -->
             <div class="bg-slate-900/80 px-6 py-3 border-t border-white/5 text-center flex items-center justify-between text-xs text-slate-400">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-wifi text-blue-400"></i> NFC Toque Ativo</span>
-                <span>Cartão Digital © 2026</span>
+                <span>Cartão Digital &copy; 2026</span>
             </div>
         </div>
 
@@ -339,13 +339,13 @@
 
     <!-- JAVASCRIPT APP LOGIC -->
     <script>
-        // Default initial profile state for JIMMY CARLOS
+        // Default initial profile state for JIMMY CARLOS with Instagram photo URL
         const DEFAULT_DATA = {
             pin: '1234',
             name: 'JIMMY CARLOS',
             title: 'DJ , EDITOR DE VIDEO E DOCUMENTARISTA',
             bio: 'Diretor de Fotografia & Roteirista | DJ & Produtor Musical\nEstudante de Jornalismo | Fundador da @lightmotion99\n(Vídeos, Eventos & Drone ✈) | Criador do @jimmybfr',
-            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
+            avatar: 'https://scontent.cdninstagram.com/v/t51.2885-15/434604082_936657961226065_7779777943007304223_n.jpg?stp=dst-jpg_e35_s1080x1080&_nc_ht=scontent.cdninstagram.com&_nc_cat=104&_nc_ohc=xW0e2u52m3UAX_X22k6&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfB32f4h95H-9k7XfI4Lq7L3x8r9f9&oe=660C895A&_nc_sid=8b3546',
             phone: '',
             whatsapp: '',
             email: '',
