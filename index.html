@@ -98,7 +98,7 @@
                 <!-- Identity Information -->
                 <h1 id="displayName" class="font-display text-2xl md:text-3xl font-bold text-white tracking-tight">JIMMY CARLOS</h1>
                 <p id="displayTitle" class="text-blue-400 font-semibold text-xs md:text-sm uppercase tracking-wider mt-1">DJ, EDITOR DE VÍDEO E DOCUMENTARISTA</p>
-                <p id="displayBio" class="text-slate-300 text-xs md:text-sm mt-3 leading-relaxed px-1">Diretor de Fotografia & Roteirista | DJ & Produtor Musical | Estudante de Jornalismo | Fundador da @lightmotion99 (Vídeos, Eventos & Drone) | Criador do @jimmybfr</p>
+                <p id="displayBio" class="text-slate-300 text-xs md:text-sm mt-3 leading-relaxed px-1">Diretor de Fotografia & Roteirista | DJ & Produtor Musical | Estudante de Jornalismo | Fundador da @lightmotion99 (Vídeos, Eventos & Drone ✈) | Criador do @jimmybfr</p>
 
                 <!-- Primary Call To Action Buttons -->
                 <div class="grid grid-cols-2 gap-3 mt-6">
@@ -325,4 +325,86 @@
             const adminDrawer = document.getElementById('adminDrawer');
             const pinInput = document.getElementById('pinInput');
 
-            document.
+            document.getElementById('openAuthBtn').addEventListener('click', () => {
+                pinInput.value = '';
+                document.getElementById('authError').classList.add('hidden');
+                authModal.classList.remove('hidden');
+            });
+
+            document.getElementById('closeAuthBtn').addEventListener('click', () => authModal.classList.add('hidden'));
+
+            document.getElementById('authForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (pinInput.value === appData.pin) {
+                    authModal.classList.add('hidden');
+                    populateAdminForm();
+                    adminDrawer.classList.remove('hidden');
+                } else {
+                    document.getElementById('authError').classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('closeAdminBtn').addEventListener('click', () => adminDrawer.classList.add('hidden'));
+
+            document.getElementById('saveAdminBtn').addEventListener('click', () => {
+                appData.name = document.getElementById('editName').value;
+                appData.title = document.getElementById('editTitle').value;
+                appData.bio = document.getElementById('editBio').value;
+                appData.avatar = document.getElementById('editAvatarUrl').value || DEFAULT_DATA.avatar;
+                appData.phone = document.getElementById('editPhone').value;
+                appData.whatsapp = document.getElementById('editWhatsapp').value;
+                appData.email = document.getElementById('editEmail').value;
+                appData.website = document.getElementById('editWebsite').value;
+                
+                const newPin = document.getElementById('editPin').value;
+                if (newPin && newPin.trim()) appData.pin = newPin.trim();
+
+                saveData();
+                adminDrawer.classList.add('hidden');
+            });
+
+            document.getElementById('saveVCardBtn').addEventListener('click', generateVCard);
+            document.getElementById('shareCardBtn').addEventListener('click', shareCard);
+        }
+
+        function generateVCard() {
+            const vcardData = `BEGIN:VCARD\nVERSION:3.0\nFN:${appData.name}\nTITLE:${appData.title}\nTEL;TYPE=CELL:${appData.phone}\nEMAIL:${appData.email}\nURL:${appData.website}\nNOTE:${appData.bio}\nEND:VCARD`;
+            const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${appData.name.replace(/\s+/g, '_')}_contato.vcf`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function shareCard() {
+            const currentUrl = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: appData.name,
+                    text: `Cartão de visita digital de ${appData.name}`,
+                    url: currentUrl
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(currentUrl);
+                alert('Link copiado!');
+            }
+        }
+
+        function populateAdminForm() {
+            document.getElementById('editName').value = appData.name;
+            document.getElementById('editTitle').value = appData.title;
+            document.getElementById('editBio').value = appData.bio;
+            document.getElementById('editAvatarUrl').value = appData.avatar;
+            document.getElementById('editPhone').value = appData.phone;
+            document.getElementById('editWhatsapp').value = appData.whatsapp;
+            document.getElementById('editEmail').value = appData.email;
+            document.getElementById('editWebsite').value = appData.website;
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
