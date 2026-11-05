@@ -1,32 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JIMMY CARLOS | Cartão de Visita Digital</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: 'var(--brand-color, #2563eb)',
-                        'brand-hover': 'var(--brand-hover-color, #1d4ed8)',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    }
-                }
+const DEFAULT_DATA = {
+            pin: '1234',
+            name: 'JIMMY CARLOS',
+            title: 'DJ , EDITOR DE VIDEO E DOCUMENTARISTA',
+            bio: 'Diretor de Fotografia & Roteirista | DJ & Produtor Musical\nEstudante de Jornalismo Fundador da @lightmotion99\n(Vídeos, Eventos & Drone ✈) Criador do @jimmybfr',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
+            phone: '+5521999999999',
+            whatsapp: '5521999999999',
+            email: 'seuemail@exemplo.com',
+            website: 'https://seuwebsite.com',
+            brandColor: '#2563eb',
+            socials: [
+                { platform: 'instagram', label: 'Instagram', url: 'https://instagram.com/jimmybfr', icon: 'fa-brands fa-instagram' },
+                { platform: 'instagram', label: '@lightmotion99', url: 'https://instagram.com/lightmotion99', icon: 'fa-brands fa-instagram' },
+                { platform: 'tiktok', label: 'TikTok', url: 'https://tiktok.com/@seutiktok', icon: 'fa-brands fa-tiktok' },
+                { platform: 'youtube', label: 'YouTube', url: 'https://youtube.com/@seuchannel', icon: 'fa-brands fa-youtube' }
+            ]
+        };
             }
         }
     </script>
